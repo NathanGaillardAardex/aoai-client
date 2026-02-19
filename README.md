@@ -2,6 +2,13 @@
 
 Thin wrapper around the OpenAI Responses API with support for typed (Pydantic) and untyped outputs.
 
+## How to build
+
+```bash
+pip install build
+python -m build
+```
+
 ## How to install locally
 
 ````bash
