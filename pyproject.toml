@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oai-client"
+version = "0.1.0"
+description = "Thin OpenAI Responses API client with typed and untyped helpers."
+readme = "README.md"
+requires-python = ">=3.10"
+
+authors = [
+    { name = "Nathan Gaillard" }
+]
+
+dependencies = [
+    "openai>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/NathanGaillardAardex/aoai-client"
+
+[tool.setuptools.packages.find]
+where = ["src"]

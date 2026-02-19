@@ -3,7 +3,7 @@
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
-from oai_client import OpenAIClient
+from src.oai_client.client import OpenAIClient
 
 load_dotenv()
 API_KEY = os.getenv("OPENAI_API_KEY")
