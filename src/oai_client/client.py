@@ -1,4 +1,4 @@
-from typing import Optional, Type, TypeVar, Union
+from typing import Any, Optional, Type, TypeVar, Union
 from openai import OpenAI
 
 T = TypeVar("T")
@@ -10,19 +10,23 @@ class OpenAIClient:
     Provides helper methods for system role, response format, and making a
     request using the configured model and temperature.
     """
-    def __init__(
-            self,
-            open_ai_key: str,
-            endpoint: str,
+
+    @classmethod
+    def _create(
+            cls,
+            *,
             model: str,
             system_role: str = "",
             response_format: Optional[Type[T]] = None,
-    ):
-        """Create a client configured for a specific model and endpoint."""
-        self._model = model
-        self._system_role = system_role
-        self._response_format = response_format
-        self._client = OpenAI(api_key=open_ai_key, base_url=endpoint)
+            openai_client: Any,
+    ) -> "OpenAIClient":
+        """Internal constructor used by the factory."""
+        instance = cls.__new__(cls)
+        instance._model = model
+        instance._system_role = system_role
+        instance._response_format = response_format
+        instance._client = openai_client
+        return instance
 
     @staticmethod
     def _extract_text(response) -> str:
