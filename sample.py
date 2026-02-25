@@ -3,7 +3,7 @@
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
-from src.oai_client.client import OpenAIClient
+from src.oai_client.factory import OpenAIClientFactory
 
 load_dotenv()
 API_KEY = os.getenv("OPENAI_API_KEY")
@@ -11,10 +11,10 @@ if not API_KEY:
     raise RuntimeError("Missing OPENAI_API_KEY in .env")
 
 def untyped_example():
-    client = OpenAIClient(
+    client = OpenAIClientFactory.from_constructor_params(
         open_ai_key=API_KEY,
         endpoint="https://api.openai.com/v1",
-        model="gpt-5-nano-2025-08-07",
+        model="gpt-4.1-nano",
         system_role="You are a helpful assistant that writes bedtime stories for children.",
     )
     
@@ -27,10 +27,10 @@ def typed_example():
         key_points: list[str]
     
     
-    client = OpenAIClient(
+    client = OpenAIClientFactory.from_constructor_params(
         open_ai_key=API_KEY,
         endpoint="https://api.openai.com/v1",
-        model="gpt-5-nano-2025-08-07",
+        model="gpt-4.1-nano",
         system_role="You list the key points of a text. You come up with a title that suits the text.",
         response_format=Summary,
     )
