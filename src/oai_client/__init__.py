@@ -1,3 +1,4 @@
-﻿from .client import OpenAIClient
+from .client import OpenAIClient
+from .factory import OpenAIClientFactory
 
-__all__ = ["OpenAIClient"]
+__all__ = ["OpenAIClient", "OpenAIClientFactory"]
